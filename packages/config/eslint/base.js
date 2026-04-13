@@ -8,7 +8,12 @@ export default [
       'simple-import-sort': simpleImportSort,
     },
     rules: {
-      'simple-import-sort/imports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [['^\\u0000'], ['^react'], ['^@?\\w'], ['^@/'], ['^\\.']],
+        },
+      ],
       'simple-import-sort/exports': 'error',
     },
   },
