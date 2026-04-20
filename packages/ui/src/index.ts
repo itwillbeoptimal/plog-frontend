@@ -7,6 +7,7 @@ export { default as Dialog } from './components/Dialog';
 export { default as Field } from './components/Field';
 export { default as IconButton } from './components/IconButton';
 export { default as Input } from './components/Input';
+export { default as Select } from './components/Select';
 export { default as Spinner } from './components/Spinner';
 export { default as Switch } from './components/Switch';
 export type { TabGroupItem, TabGroupProps } from './components/Tab/TabGroup';
