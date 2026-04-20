@@ -15,4 +15,7 @@ export { default as TabGroup } from './components/Tab/TabGroup';
 export type { TabItemProps } from './components/Tab/TabItem';
 export { default as TabItem } from './components/Tab/TabItem';
 export { default as Textarea } from './components/Textarea';
+export { default as ToastProvider } from './components/ToastProvider';
+export { useToast } from './hooks/useToast';
 export * from './tokens';
+export type { ToastOptions } from './types/Toast.type';
