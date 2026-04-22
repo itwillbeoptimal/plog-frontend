@@ -1,11 +1,7 @@
-import {
-  type ComponentPropsWithoutRef,
-  forwardRef,
-  type ReactNode,
-} from 'react';
+import { type ComponentPropsWithoutRef, type ReactNode, type Ref } from 'react';
 
 import { cn } from '@plog/utils';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
 const tabItemVariants = cva(
   'label-lg box-border inline-flex shrink-0 items-center justify-start gap-1.5 whitespace-nowrap bg-transparent px-4 py-3 outline-none transition-colors focus-visible:outline-2 focus-visible:outline-semantic-accent-subtle focus-visible:outline-offset-[-2px]',
@@ -28,21 +24,29 @@ const tabItemVariants = cva(
   },
 );
 
-type TabItemProps = Omit<ComponentPropsWithoutRef<'button'>, 'children'> &
-  VariantProps<typeof tabItemVariants> & {
-    icon?: ReactNode;
-    label: ReactNode;
-  };
+type TabItemProps = Omit<ComponentPropsWithoutRef<'button'>, 'children'> & {
+  selected?: boolean | null;
+  disabled?: boolean | null;
+  icon?: ReactNode;
+  label: ReactNode;
+  ref?: Ref<HTMLButtonElement>;
+};
 
-const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(function TabItem(
-  { icon, label, selected, disabled, className, type = 'button', ...props },
+function TabItem({
   ref,
-) {
+  icon,
+  label,
+  selected,
+  disabled,
+  className,
+  type = 'button',
+  ...props
+}: TabItemProps) {
   return (
     <button
       ref={ref}
       type={type}
-      disabled={disabled}
+      disabled={disabled ?? false}
       className={cn(tabItemVariants({ selected, disabled }), className)}
       {...props}
     >
@@ -52,7 +56,6 @@ const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(function TabItem(
       <span className="truncate">{label}</span>
     </button>
   );
-});
+}
 
-export type { TabItemProps };
 export default TabItem;
