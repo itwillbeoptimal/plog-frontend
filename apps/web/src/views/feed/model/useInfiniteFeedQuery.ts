@@ -2,11 +2,11 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { FEED_QUERY_KEY, type FeedPage } from '@/entities/feed';
+import { type FeedPage } from '@/entities/feed';
 import { MOCK_FEED_DATA } from '@/entities/feed/model/mock-data';
 
 const PAGE_SIZE = 10;
-export { FEED_QUERY_KEY };
+export const FEED_QUERY_KEY = ['feed'] as const;
 
 async function fetchFeedPage(pageParam: number): Promise<FeedPage> {
   await new Promise((resolve) => setTimeout(resolve, 400));

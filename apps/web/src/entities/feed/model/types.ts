@@ -23,8 +23,10 @@ export type FeedPost = {
       id: string;
       placeName: string;
       studyDate: string;
-      studyTime: string;
+      studyTime: number;
       concentrateCount: number;
+      roadAddress?: string;
+      category?: string;
     };
   };
 };
