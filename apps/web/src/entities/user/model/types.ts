@@ -1,5 +1,13 @@
 import { type StaticImageData } from 'next/image';
 
+export type UserBadge = {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
+  isAcquired: boolean;
+};
+
 export type TypeCardId = 'LOGI' | 'CHICHI' | 'TORI' | 'HARU' | 'POPO' | 'NAO';
 
 export type TypeCardTheme =
@@ -46,19 +54,19 @@ export type DefaultProfileImage = {
   imageUrl: string;
 };
 
-export type MypageMainBadge = {
-  id: number;
-  name: string;
-  description: string;
-  imageUrl: string;
-  isAcquired: boolean;
+export type UserProfileType = {
+  id?: number;
+  nickname: string;
+  profileImageUrl?: string;
+  introduction: string | null;
+  mainBadge: UserBadge | null;
 };
 
 export type MypageData = {
   nickname: string;
   profileImageUrl: string;
   introduction: string | null;
-  mainBadge: MypageMainBadge | null;
+  mainBadge: UserBadge | null;
 };
 
 export type AnalyticsFocusEnvironment = {
