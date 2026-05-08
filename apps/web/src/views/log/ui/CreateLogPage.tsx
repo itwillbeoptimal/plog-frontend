@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 
 import {
   Button,
+  Chip,
   type DateValue,
   Field,
   Icon,
@@ -26,8 +27,8 @@ import { ReviewTagsSheet } from '@/features/select-review-tags';
 import { formatDisplayDate, WorkDateDialog } from '@/features/select-work-date';
 import { formatTimeValue, WorkTimeDialog } from '@/features/select-work-time';
 
-import { PlaceTagValue } from '@/entities/feed';
-import { PLACE_CATEGORIES, type PlaceCategoryValue } from '@/entities/place';
+import { PLACE_TAG_LABELS, type PlaceTagValue } from '@/entities/feed';
+import { getCategoryLabel, type PlaceCategoryValue } from '@/entities/place';
 
 import { usePhotoUpload } from '../model/use-photo-upload';
 import PhotoUploader from './PhotoUploader';
@@ -151,10 +152,7 @@ export default function CreateLogPage({
           </Field>
           <PlaceCategorySheet value={placeCategory} onChange={setPlaceCategory}>
             <SelectTriggerButton
-              value={
-                PLACE_CATEGORIES.find((c) => c.value === placeCategory)
-                  ?.label ?? null
-              }
+              value={placeCategory ? getCategoryLabel(placeCategory) : null}
               placeholder="장소 카테고리를 선택해 주세요."
               icon={
                 <Icon
@@ -249,6 +247,24 @@ export default function CreateLogPage({
                 태그 추가하기
               </Button>
             </ReviewTagsSheet>
+            {reviewTags.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {reviewTags.map((tag) => (
+                  <Chip
+                    key={tag}
+                    size="small"
+                    variant="soft"
+                    pressed
+                    onClick={() =>
+                      setReviewTags((prev) => prev.filter((t) => t !== tag))
+                    }
+                  >
+                    {PLACE_TAG_LABELS[tag]}
+                    <Icon name="close" size={16} />
+                  </Chip>
+                ))}
+              </div>
+            )}
           </Field>
         </div>
       </section>
