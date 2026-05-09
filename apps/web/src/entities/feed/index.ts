@@ -21,6 +21,7 @@ export type {
   BookmarkSortType,
   FeedPage,
   FeedPost,
+  PostScope,
   PostSortType,
 } from './model/types';
 export { default as FeedGridItem } from './ui/FeedGridItem';

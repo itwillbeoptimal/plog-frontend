@@ -2,12 +2,12 @@ import { CreateLogPage } from '@/views/log';
 
 type LogPageProps = {
   searchParams: Promise<{
-    placeName?: string;
+    postId?: string;
   }>;
 };
 
 export default async function LogPage({ searchParams }: LogPageProps) {
-  const { placeName = '' } = await searchParams;
+  const { postId } = await searchParams;
 
-  return <CreateLogPage key={placeName} initialPlaceName={placeName} />;
+  return <CreateLogPage editPostId={postId} />;
 }

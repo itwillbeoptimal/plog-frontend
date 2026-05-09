@@ -1,5 +1,7 @@
 import { type PlaceTagValue } from './place-tag';
 
+export type PostScope = 'PUBLIC' | 'PRIVATE';
+
 export type FeedPost = {
   postId: number;
   name: string;
@@ -15,13 +17,16 @@ export type FeedPost = {
   tags: PlaceTagValue[];
   like: boolean;
   bookMark: boolean;
-  placeCategory?: string;
+  memberKey?: string;
+  category?: string;
+  address?: string;
   isPublic?: boolean;
 };
 
 export type FeedPage = {
   items: FeedPost[];
-  nextPage: number | undefined;
+  lastPostId: number | null;
+  createAt: string | null;
 };
 
 export type PostSortType = 'latest' | 'focus' | 'studyTime';

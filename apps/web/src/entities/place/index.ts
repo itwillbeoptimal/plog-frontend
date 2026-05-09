@@ -1,4 +1,20 @@
+export {
+  deleteRecentPlace,
+  deleteRecentPlaces,
+  getRecentPlaces,
+  saveRecentPlace,
+} from './api/client';
 export { getCategoryLabel } from './lib/category-label';
-export type { PlaceCategory, PlaceCategoryValue } from './model/place-category';
+export type { PlaceCategoryValue } from './model/place-category';
 export { PLACE_CATEGORIES } from './model/place-category';
-export type { MapSortType, Place, PlaceLayer } from './model/types';
+export { placeQueryKeys } from './model/query-keys';
+export type {
+  MapSortType,
+  Place,
+  PlaceLayer,
+  RecentPlace,
+  RecentPlaceDeleteResponse,
+  RecentPlaceSaveResponse,
+  RecentPlacesResponse,
+  SaveRecentPlaceRequest,
+} from './model/types';

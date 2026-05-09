@@ -1,14 +1,13 @@
 import { Icon } from '@plog/ui';
 
-import {
-  formatRecentPlaceDate,
-  type RecentPlace,
-} from '../model/recent-places';
+import { type RecentPlace } from '@/entities/place';
+
+import { formatRecentPlaceDate } from '../model/recent-place-date';
 
 type RecentPlaceItemProps = {
   place: RecentPlace;
   onSelect: (place: RecentPlace) => void;
-  onRemove: (id: string) => void;
+  onRemove: (id: number) => void;
 };
 
 export default function RecentPlaceItem({
@@ -35,12 +34,12 @@ export default function RecentPlaceItem({
             </span>
           </span>
           <span className="label-md shrink-0 text-semantic-object-subtle">
-            {formatRecentPlaceDate(place.searchedDate)}
+            {formatRecentPlaceDate(place.searchedAt)}
           </span>
         </button>
         <button
           type="button"
-          className="ml-2 shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-semantic-accent-normal"
+          className="ml-2 flex cursor-pointer items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-semantic-accent-normal"
           onClick={() => onRemove(place.id)}
           aria-label={`${place.placeName} 삭제`}
         >
