@@ -1,17 +1,13 @@
 'use client';
 
-import { UserProfile, type UserProfileType } from '@/entities/user';
+import { UserProfile } from '@/entities/user';
 
-// TODO: API 연동 시 /api/feed/profileView/{memberKey} 응답의 memberInfo로 교체
-const MOCK_PROFILE: UserProfileType = {
-  id: 4,
-  nickname: 'zl존하민ㅋ',
-  introduction:
-    '글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자글자수백자',
-  mainBadge: null,
-};
+import { useFeedProfileViewQuery } from '../model/use-feed-profile-view-query';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function UserProfileSection({ userId }: { userId: string }) {
-  return <UserProfile profile={MOCK_PROFILE} />;
+  const { data, isPending, isError } = useFeedProfileViewQuery(userId);
+
+  if (isPending || isError || !data?.memberInfo) return null;
+
+  return <UserProfile profile={data.memberInfo} />;
 }

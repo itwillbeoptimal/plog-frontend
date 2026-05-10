@@ -237,7 +237,13 @@ export default function FeedDetailCard({
   }
 
   const hasMultipleImages = post.postImages.length > 1;
-  const isMyPost = post.isAuthor;
+  const isMyPost = post.isAuthor ?? false;
+  const isProfileClickable = Boolean(post.memberKey) && !isMyPost;
+
+  const handleProfileClick = () => {
+    if (!post.memberKey) return;
+    router.push(`/feed/users/${encodeURIComponent(post.memberKey)}`);
+  };
 
   return (
     <>
@@ -245,11 +251,26 @@ export default function FeedDetailCard({
       <section className="relative pt-[var(--spacing-header)]">
         <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
-            <Avatar
-              size="xsmall"
-              src={post.profileImage}
-              alt={`${post.name}의 프로필 이미지`}
-            />
+            {isProfileClickable ? (
+              <button
+                type="button"
+                aria-label={`${post.name} 프로필 보기`}
+                onClick={handleProfileClick}
+                className="flex cursor-pointer items-center justify-center rounded-full"
+              >
+                <Avatar
+                  size="xsmall"
+                  src={post.profileImage}
+                  alt={`${post.name}의 프로필 이미지`}
+                />
+              </button>
+            ) : (
+              <Avatar
+                size="xsmall"
+                src={post.profileImage}
+                alt={`${post.name}의 프로필 이미지`}
+              />
+            )}
             <div className="flex flex-col gap-1">
               <span className="label-lg text-semantic-object-boldest">
                 {post.name}
@@ -381,16 +402,14 @@ export default function FeedDetailCard({
             <TagBadgeGroup tags={post.tags} />
           </div>
           <div className="mt-7 flex flex-col border-t border-semantic-object-subtler px-6 py-7">
-            <div className="flex items-center justify-between">
-              <span className="title-xs text-semantic-object-boldest">
-                {post.title}
-              </span>
-              <p className="caption-md text-semantic-object-subtle">
-                {formatStudyDate(post.createAt)}
-              </p>
-            </div>
-            <span className="body-sm text-semantic-object-normal">
+            <span className="title-xs mb-1 text-semantic-object-boldest">
+              {post.title}
+            </span>
+            <p className="body-sm mb-3 text-semantic-object-normal">
               {post.contents}
+            </p>
+            <span className="caption-md self-end text-semantic-object-subtle">
+              {formatStudyDate(post.createAt)}
             </span>
           </div>
         </div>
