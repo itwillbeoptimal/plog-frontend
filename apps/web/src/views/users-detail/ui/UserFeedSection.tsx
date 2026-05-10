@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { Spinner } from '@plog/ui';
 import { cn } from '@plog/utils';
 
 import {
@@ -45,12 +46,15 @@ export default function UserFeedSection({ userId }: { userId: string }) {
   } = useFeedProfilePostsQuery(userId, sort);
 
   const handleFeedClick = (feed: FeedPost) => {
-    router.push(
-      `/feed/${feed.postId}?backTo=${encodeURIComponent(`/feed/users/${userId}`)}`,
-    );
+    router.push(`/feed/${feed.postId}`);
   };
 
-  if (isPending) return null;
+  if (isPending)
+    return (
+      <section className="flex flex-1 items-center justify-center pt-3">
+        <Spinner size="large" />
+      </section>
+    );
 
   if (isError) {
     return (
