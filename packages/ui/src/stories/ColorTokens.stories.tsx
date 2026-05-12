@@ -159,182 +159,47 @@ const groups: Group[] = [
     ],
   },
   {
-    label: 'Feedback / Error',
+    label: 'Theme / Red',
     rows: [
       {
-        token: '.feedback.error.bolder',
-        bg: 'bg-semantic-feedback-error-bolder',
-        hex: semantic.feedback.error.bolder,
+        token: '.theme.red.bolder',
+        bg: 'bg-semantic-theme-red-bolder',
+        hex: semantic.theme.red.bolder,
       },
       {
-        token: '.feedback.error.bold',
-        bg: 'bg-semantic-feedback-error-bold',
-        hex: semantic.feedback.error.bold,
+        token: '.theme.red.bold',
+        bg: 'bg-semantic-theme-red-bold',
+        hex: semantic.theme.red.bold,
       },
       {
-        token: '.feedback.error.normal',
-        bg: 'bg-semantic-feedback-error-normal',
-        hex: semantic.feedback.error.normal,
+        token: '.theme.red.normal',
+        bg: 'bg-semantic-theme-red-normal',
+        hex: semantic.theme.red.normal,
       },
       {
-        token: '.feedback.error.neutral',
-        bg: 'bg-semantic-feedback-error-neutral',
-        hex: semantic.feedback.error.neutral,
+        token: '.theme.red.neutral',
+        bg: 'bg-semantic-theme-red-neutral',
+        hex: semantic.theme.red.neutral,
       },
       {
-        token: '.feedback.error.alternative',
-        bg: 'bg-semantic-feedback-error-alternative',
-        hex: semantic.feedback.error.alternative,
+        token: '.theme.red.alternative',
+        bg: 'bg-semantic-theme-red-alternative',
+        hex: semantic.theme.red.alternative,
       },
       {
-        token: '.feedback.error.assistive',
-        bg: 'bg-semantic-feedback-error-assistive',
-        hex: semantic.feedback.error.assistive,
+        token: '.theme.red.assistive',
+        bg: 'bg-semantic-theme-red-assistive',
+        hex: semantic.theme.red.assistive,
       },
       {
-        token: '.feedback.error.subtle',
-        bg: 'bg-semantic-feedback-error-subtle',
-        hex: semantic.feedback.error.subtle,
+        token: '.theme.red.subtle',
+        bg: 'bg-semantic-theme-red-subtle',
+        hex: semantic.theme.red.subtle,
       },
       {
-        token: '.feedback.error.subtler',
-        bg: 'bg-semantic-feedback-error-subtler',
-        hex: semantic.feedback.error.subtler,
-      },
-    ],
-  },
-  {
-    label: 'Feedback / Warning',
-    rows: [
-      {
-        token: '.feedback.warning.bolder',
-        bg: 'bg-semantic-feedback-warning-bolder',
-        hex: semantic.feedback.warning.bolder,
-      },
-      {
-        token: '.feedback.warning.bold',
-        bg: 'bg-semantic-feedback-warning-bold',
-        hex: semantic.feedback.warning.bold,
-      },
-      {
-        token: '.feedback.warning.normal',
-        bg: 'bg-semantic-feedback-warning-normal',
-        hex: semantic.feedback.warning.normal,
-      },
-      {
-        token: '.feedback.warning.neutral',
-        bg: 'bg-semantic-feedback-warning-neutral',
-        hex: semantic.feedback.warning.neutral,
-      },
-      {
-        token: '.feedback.warning.alternative',
-        bg: 'bg-semantic-feedback-warning-alternative',
-        hex: semantic.feedback.warning.alternative,
-      },
-      {
-        token: '.feedback.warning.assistive',
-        bg: 'bg-semantic-feedback-warning-assistive',
-        hex: semantic.feedback.warning.assistive,
-      },
-      {
-        token: '.feedback.warning.subtle',
-        bg: 'bg-semantic-feedback-warning-subtle',
-        hex: semantic.feedback.warning.subtle,
-      },
-      {
-        token: '.feedback.warning.subtler',
-        bg: 'bg-semantic-feedback-warning-subtler',
-        hex: semantic.feedback.warning.subtler,
-      },
-    ],
-  },
-  {
-    label: 'Feedback / Success',
-    rows: [
-      {
-        token: '.feedback.success.bolder',
-        bg: 'bg-semantic-feedback-success-bolder',
-        hex: semantic.feedback.success.bolder,
-      },
-      {
-        token: '.feedback.success.bold',
-        bg: 'bg-semantic-feedback-success-bold',
-        hex: semantic.feedback.success.bold,
-      },
-      {
-        token: '.feedback.success.normal',
-        bg: 'bg-semantic-feedback-success-normal',
-        hex: semantic.feedback.success.normal,
-      },
-      {
-        token: '.feedback.success.neutral',
-        bg: 'bg-semantic-feedback-success-neutral',
-        hex: semantic.feedback.success.neutral,
-      },
-      {
-        token: '.feedback.success.alternative',
-        bg: 'bg-semantic-feedback-success-alternative',
-        hex: semantic.feedback.success.alternative,
-      },
-      {
-        token: '.feedback.success.assistive',
-        bg: 'bg-semantic-feedback-success-assistive',
-        hex: semantic.feedback.success.assistive,
-      },
-      {
-        token: '.feedback.success.subtle',
-        bg: 'bg-semantic-feedback-success-subtle',
-        hex: semantic.feedback.success.subtle,
-      },
-      {
-        token: '.feedback.success.subtler',
-        bg: 'bg-semantic-feedback-success-subtler',
-        hex: semantic.feedback.success.subtler,
-      },
-    ],
-  },
-  {
-    label: 'Feedback / Information',
-    rows: [
-      {
-        token: '.feedback.info.bolder',
-        bg: 'bg-semantic-feedback-info-bolder',
-        hex: semantic.feedback.info.bolder,
-      },
-      {
-        token: '.feedback.info.bold',
-        bg: 'bg-semantic-feedback-info-bold',
-        hex: semantic.feedback.info.bold,
-      },
-      {
-        token: '.feedback.info.normal',
-        bg: 'bg-semantic-feedback-info-normal',
-        hex: semantic.feedback.info.normal,
-      },
-      {
-        token: '.feedback.info.neutral',
-        bg: 'bg-semantic-feedback-info-neutral',
-        hex: semantic.feedback.info.neutral,
-      },
-      {
-        token: '.feedback.info.alternative',
-        bg: 'bg-semantic-feedback-info-alternative',
-        hex: semantic.feedback.info.alternative,
-      },
-      {
-        token: '.feedback.info.assistive',
-        bg: 'bg-semantic-feedback-info-assistive',
-        hex: semantic.feedback.info.assistive,
-      },
-      {
-        token: '.feedback.info.subtle',
-        bg: 'bg-semantic-feedback-info-subtle',
-        hex: semantic.feedback.info.subtle,
-      },
-      {
-        token: '.feedback.info.subtler',
-        bg: 'bg-semantic-feedback-info-subtler',
-        hex: semantic.feedback.info.subtler,
+        token: '.theme.red.subtler',
+        bg: 'bg-semantic-theme-red-subtler',
+        hex: semantic.theme.red.subtler,
       },
     ],
   },
@@ -384,6 +249,51 @@ const groups: Group[] = [
     ],
   },
   {
+    label: 'Theme / Amber',
+    rows: [
+      {
+        token: '.theme.amber.bolder',
+        bg: 'bg-semantic-theme-amber-bolder',
+        hex: semantic.theme.amber.bolder,
+      },
+      {
+        token: '.theme.amber.bold',
+        bg: 'bg-semantic-theme-amber-bold',
+        hex: semantic.theme.amber.bold,
+      },
+      {
+        token: '.theme.amber.normal',
+        bg: 'bg-semantic-theme-amber-normal',
+        hex: semantic.theme.amber.normal,
+      },
+      {
+        token: '.theme.amber.neutral',
+        bg: 'bg-semantic-theme-amber-neutral',
+        hex: semantic.theme.amber.neutral,
+      },
+      {
+        token: '.theme.amber.alternative',
+        bg: 'bg-semantic-theme-amber-alternative',
+        hex: semantic.theme.amber.alternative,
+      },
+      {
+        token: '.theme.amber.assistive',
+        bg: 'bg-semantic-theme-amber-assistive',
+        hex: semantic.theme.amber.assistive,
+      },
+      {
+        token: '.theme.amber.subtle',
+        bg: 'bg-semantic-theme-amber-subtle',
+        hex: semantic.theme.amber.subtle,
+      },
+      {
+        token: '.theme.amber.subtler',
+        bg: 'bg-semantic-theme-amber-subtler',
+        hex: semantic.theme.amber.subtler,
+      },
+    ],
+  },
+  {
     label: 'Theme / Yellow',
     rows: [
       {
@@ -429,6 +339,51 @@ const groups: Group[] = [
     ],
   },
   {
+    label: 'Theme / Green',
+    rows: [
+      {
+        token: '.theme.green.bolder',
+        bg: 'bg-semantic-theme-green-bolder',
+        hex: semantic.theme.green.bolder,
+      },
+      {
+        token: '.theme.green.bold',
+        bg: 'bg-semantic-theme-green-bold',
+        hex: semantic.theme.green.bold,
+      },
+      {
+        token: '.theme.green.normal',
+        bg: 'bg-semantic-theme-green-normal',
+        hex: semantic.theme.green.normal,
+      },
+      {
+        token: '.theme.green.neutral',
+        bg: 'bg-semantic-theme-green-neutral',
+        hex: semantic.theme.green.neutral,
+      },
+      {
+        token: '.theme.green.alternative',
+        bg: 'bg-semantic-theme-green-alternative',
+        hex: semantic.theme.green.alternative,
+      },
+      {
+        token: '.theme.green.assistive',
+        bg: 'bg-semantic-theme-green-assistive',
+        hex: semantic.theme.green.assistive,
+      },
+      {
+        token: '.theme.green.subtle',
+        bg: 'bg-semantic-theme-green-subtle',
+        hex: semantic.theme.green.subtle,
+      },
+      {
+        token: '.theme.green.subtler',
+        bg: 'bg-semantic-theme-green-subtler',
+        hex: semantic.theme.green.subtler,
+      },
+    ],
+  },
+  {
     label: 'Theme / Sky',
     rows: [
       {
@@ -470,6 +425,51 @@ const groups: Group[] = [
         token: '.theme.sky.subtler',
         bg: 'bg-semantic-theme-sky-subtler',
         hex: semantic.theme.sky.subtler,
+      },
+    ],
+  },
+  {
+    label: 'Theme / Blue',
+    rows: [
+      {
+        token: '.theme.blue.bolder',
+        bg: 'bg-semantic-theme-blue-bolder',
+        hex: semantic.theme.blue.bolder,
+      },
+      {
+        token: '.theme.blue.bold',
+        bg: 'bg-semantic-theme-blue-bold',
+        hex: semantic.theme.blue.bold,
+      },
+      {
+        token: '.theme.blue.normal',
+        bg: 'bg-semantic-theme-blue-normal',
+        hex: semantic.theme.blue.normal,
+      },
+      {
+        token: '.theme.blue.neutral',
+        bg: 'bg-semantic-theme-blue-neutral',
+        hex: semantic.theme.blue.neutral,
+      },
+      {
+        token: '.theme.blue.alternative',
+        bg: 'bg-semantic-theme-blue-alternative',
+        hex: semantic.theme.blue.alternative,
+      },
+      {
+        token: '.theme.blue.assistive',
+        bg: 'bg-semantic-theme-blue-assistive',
+        hex: semantic.theme.blue.assistive,
+      },
+      {
+        token: '.theme.blue.subtle',
+        bg: 'bg-semantic-theme-blue-subtle',
+        hex: semantic.theme.blue.subtle,
+      },
+      {
+        token: '.theme.blue.subtler',
+        bg: 'bg-semantic-theme-blue-subtler',
+        hex: semantic.theme.blue.subtler,
       },
     ],
   },
