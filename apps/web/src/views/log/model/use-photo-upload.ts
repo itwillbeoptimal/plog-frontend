@@ -1,8 +1,6 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-import { create } from 'zustand';
-
-import { type PostImage } from './types';
+import { MAX_PHOTO_COUNT } from '@/shared/lib/image-upload-policy';
 
 export type NewPhotoPreview = {
   type: 'new';
@@ -20,23 +18,12 @@ export type ExistingPhotoPreview = {
 
 export type PhotoPreview = NewPhotoPreview | ExistingPhotoPreview;
 
-export const MAX_PHOTO_COUNT = 5;
-
 function createPhotoPreview(file: File, index: number): NewPhotoPreview {
   return {
     type: 'new',
     id: `${file.name}-${file.size}-${file.lastModified}-${Date.now()}-${index}`,
     file,
     url: URL.createObjectURL(file),
-  };
-}
-
-function createExistingPhotoPreview(image: PostImage): ExistingPhotoPreview {
-  return {
-    type: 'existing',
-    id: `existing-${image.id}`,
-    imageId: image.id,
-    url: image.url,
   };
 }
 
@@ -50,72 +37,68 @@ function revokePhotoUrl(photo: PhotoPreview) {
   if (isNewPhotoPreview(photo)) URL.revokeObjectURL(photo.url);
 }
 
-type PhotoStore = {
+type UsePhotoUploadOptions = {
   photos: PhotoPreview[];
-  setPhotos: (
-    updater: PhotoPreview[] | ((prev: PhotoPreview[]) => PhotoPreview[]),
-  ) => void;
+  onPhotosChange: (photos: PhotoPreview[]) => void;
 };
 
-const usePhotoStore = create<PhotoStore>()((set) => ({
-  photos: [],
-  setPhotos: (updater) =>
-    set((state) => ({
-      photos: typeof updater === 'function' ? updater(state.photos) : updater,
-    })),
-}));
+export function usePhotoUpload({
+  photos,
+  onPhotosChange,
+}: UsePhotoUploadOptions) {
+  const photosRef = useRef(photos);
+  const previousPhotosRef = useRef(photos);
 
-export function usePhotoUpload() {
-  const photos = usePhotoStore((state) => state.photos);
-  const setPhotos = usePhotoStore((state) => state.setPhotos);
+  useEffect(() => {
+    previousPhotosRef.current
+      .filter((previousPhoto) =>
+        photos.every((photo) => photo.id !== previousPhoto.id),
+      )
+      .forEach(revokePhotoUrl);
+
+    photosRef.current = photos;
+    previousPhotosRef.current = photos;
+  }, [photos]);
+
+  useEffect(() => {
+    return () => {
+      photosRef.current.forEach(revokePhotoUrl);
+    };
+  }, []);
 
   const handleAddPhotos = useCallback(
     (files: File[]) => {
-      setPhotos((currentPhotos) => {
-        const availableCount = MAX_PHOTO_COUNT - currentPhotos.length;
-        const nextFiles = files.slice(0, availableCount);
-        return [
-          ...currentPhotos,
-          ...nextFiles.map((file, index) => createPhotoPreview(file, index)),
-        ];
-      });
+      const currentPhotos = photosRef.current;
+      const availableCount = MAX_PHOTO_COUNT - currentPhotos.length;
+      const nextFiles = files.slice(0, availableCount);
+
+      onPhotosChange([
+        ...currentPhotos,
+        ...nextFiles.map((file, index) => createPhotoPreview(file, index)),
+      ]);
     },
-    [setPhotos],
+    [onPhotosChange],
   );
 
   const handleRemovePhoto = useCallback(
     (id: string) => {
-      setPhotos((currentPhotos) => {
-        const targetPhoto = currentPhotos.find((photo) => photo.id === id);
-        if (targetPhoto) revokePhotoUrl(targetPhoto);
-        return currentPhotos.filter((photo) => photo.id !== id);
-      });
-    },
-    [setPhotos],
-  );
+      const currentPhotos = photosRef.current;
+      const targetPhoto = currentPhotos.find((photo) => photo.id === id);
 
-  const setExistingPhotos = useCallback(
-    (images: PostImage[]) => {
-      setPhotos((currentPhotos) => {
-        currentPhotos.forEach(revokePhotoUrl);
-        return images.slice(0, MAX_PHOTO_COUNT).map(createExistingPhotoPreview);
-      });
+      if (targetPhoto) revokePhotoUrl(targetPhoto);
+      onPhotosChange(currentPhotos.filter((photo) => photo.id !== id));
     },
-    [setPhotos],
+    [onPhotosChange],
   );
 
   const clearPhotos = useCallback(() => {
-    setPhotos((currentPhotos) => {
-      currentPhotos.forEach(revokePhotoUrl);
-      return [];
-    });
-  }, [setPhotos]);
+    photosRef.current.forEach(revokePhotoUrl);
+    onPhotosChange([]);
+  }, [onPhotosChange]);
 
   return {
-    photos,
     handleAddPhotos,
     handleRemovePhoto,
-    setExistingPhotos,
     clearPhotos,
   };
 }

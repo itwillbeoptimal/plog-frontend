@@ -1,39 +1,35 @@
-import { type CreateLogValues } from '@/features/create-log';
+import { type z } from 'zod';
 
-import { type PlaceTagValue, type PostScope } from '@/entities/feed';
+import { type createLogSchema } from './schema';
 
-import { type PhotoPreview } from './use-photo-upload';
+export type CreateLogFormValues = z.infer<typeof createLogSchema>;
 
-export type CreateLogFormValues = CreateLogValues & {
-  photos: PhotoPreview[];
-};
-
-export type PostTime = {
+export type Time = {
   hour: number;
   minute: number;
 };
 
-export type PostPlace = {
+export type Place = {
   name: string;
   address: string;
   latitude: number;
   longitude: number;
 };
 
-export type PostCreateRequest = {
+export type CreateRequest = {
   title: string;
   contents: string;
-  startedAt: PostTime;
-  endedAt: PostTime;
+  startedAt: Time;
+  endedAt: Time;
   studyDate: string;
-  focus: number;
-  scope: PostScope;
-  place: PostPlace;
-  placeTags: PlaceTagValue[];
-  categoryCode: string;
+  focus: NonNullable<CreateLogFormValues['focus']>;
+  scope: CreateLogFormValues['scope'];
+  place: Place;
+  placeTags: CreateLogFormValues['placeTags'];
+  categoryCode: NonNullable<CreateLogFormValues['categoryCode']>;
 };
 
-export type PostUpdateRequest = PostCreateRequest & {
+export type UpdateRequest = CreateRequest & {
   keepImageIds: number[];
 };
 
@@ -42,13 +38,13 @@ export type PostImage = {
   url: string;
 };
 
-export type PostEditFields = Omit<PostCreateRequest, 'place'> & {
+export type EditFields = Omit<CreateRequest, 'place'> & {
   studyTime: number;
-  place: PostPlace;
+  place: Place;
 };
 
-export type PostEditData = {
-  post: PostEditFields;
+export type EditData = {
+  post: EditFields;
   images: {
     images: PostImage[];
     total: number;
