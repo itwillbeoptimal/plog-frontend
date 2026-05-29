@@ -13,7 +13,35 @@ import { useRouter } from 'next/navigation';
 
 import { useToast } from '@plog/ui';
 
-import { initialCreateLogValues } from '@/features/create-log';
+import {
+  type CreateLogPlace,
+  initialCreateLogValues,
+} from '@/features/create-log';
+
+const MAP_INITIAL_PLACE_KEY = 'map:initial-place';
+
+function readMapInitialPlace(): CreateLogPlace | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const saved = sessionStorage.getItem(MAP_INITIAL_PLACE_KEY);
+    if (!saved) return null;
+    const parsed: unknown = JSON.parse(saved);
+    if (
+      typeof parsed !== 'object' ||
+      parsed === null ||
+      typeof (parsed as Record<string, unknown>).name !== 'string' ||
+      typeof (parsed as Record<string, unknown>).address !== 'string' ||
+      typeof (parsed as Record<string, unknown>).latitude !== 'number' ||
+      typeof (parsed as Record<string, unknown>).longitude !== 'number'
+    ) {
+      return null;
+    }
+    sessionStorage.removeItem(MAP_INITIAL_PLACE_KEY);
+    return parsed as CreateLogPlace;
+  } catch {
+    return null;
+  }
+}
 
 import { dialog } from '@/shared/lib/dialog';
 import { IMAGE_UPLOAD_MAX_FILE_SIZE } from '@/shared/lib/image-upload-policy';
@@ -65,6 +93,7 @@ export function useCreateLogPage(editPostId?: string) {
     defaultValues: {
       ...initialCreateLogValues,
       photos: [],
+      place: !isEditMode ? readMapInitialPlace() : null,
     },
     mode: 'onChange',
     reValidateMode: 'onChange',
