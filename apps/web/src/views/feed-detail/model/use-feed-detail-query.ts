@@ -19,12 +19,13 @@ function isPrivateAccessError(error: unknown) {
   );
 }
 
-export function useFeedDetailQuery(postId: number) {
+export function useFeedDetailQuery(postId: number, initialData?: FeedPost) {
   const query = useQuery({
     queryKey: feedQueryKeys.detail(postId),
     queryFn: () => getFeedDetail(postId),
     enabled: Number.isInteger(postId) && postId > 0,
-    retry: (_, error) => !isPrivateAccessError(error),
+    initialData,
+    retry: false,
   });
 
   return {
