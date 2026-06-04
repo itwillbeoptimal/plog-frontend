@@ -10,12 +10,14 @@ import { useToggleLike } from '../model/use-toggle-like';
 type LikeButtonProps = {
   postId: number;
   isLiked: boolean;
+  disableTracking?: boolean;
   className?: string;
 };
 
 export default function LikeButton({
   postId,
   isLiked,
+  disableTracking,
   className,
 }: LikeButtonProps) {
   const [optimisticLiked, setOptimisticLiked] = useState(isLiked);
@@ -29,7 +31,7 @@ export default function LikeButton({
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     setOptimisticLiked((prev) => !prev);
-    toggleLike(postId);
+    toggleLike(postId, disableTracking);
   };
 
   return (

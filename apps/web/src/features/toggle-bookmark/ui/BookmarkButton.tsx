@@ -13,6 +13,7 @@ import {
 type BookmarkButtonProps = {
   postId: number;
   isBookmarked: boolean;
+  disableTracking?: boolean;
   profilePostsTarget?: ProfilePostsBookmarkTarget;
   className?: string;
 };
@@ -20,6 +21,7 @@ type BookmarkButtonProps = {
 export default function BookmarkButton({
   postId,
   isBookmarked,
+  disableTracking,
   profilePostsTarget,
   className,
 }: BookmarkButtonProps) {
@@ -38,8 +40,11 @@ export default function BookmarkButton({
       postId,
       optimisticBookmarked,
       profilePostsTarget,
+      disableTracking,
     );
-    if (proceeded) setOptimisticBookmarked((prev) => !prev);
+    if (proceeded) {
+      setOptimisticBookmarked((prev) => !prev);
+    }
   };
 
   return (
