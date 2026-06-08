@@ -1,9 +1,8 @@
 import { clientApi } from '@/shared/api/client-api';
 import { createMultipartRequest } from '@/shared/api/create-multipart-request';
 
+import { analyticsDataSchema, mypageDataSchema } from '../model/schemas';
 import {
-  type AnalyticsData,
-  type MypageData,
   type ProfileImageOption,
   type SetupProfileRequest,
   type TermsAgreements,
@@ -34,10 +33,11 @@ export const signup = (
   return clientApi.post<string>(endpoint, formData);
 };
 
-export const getMypage = () => clientApi.get<MypageData>('/members/mypage');
+export const getMypage = () =>
+  clientApi.get('/members/mypage', mypageDataSchema);
 
 export const getAnalytics = () =>
-  clientApi.get<AnalyticsData>('/members/analytics');
+  clientApi.get('/members/analytics', analyticsDataSchema);
 
 export const updateProfile = (
   data: SetupProfileRequest,
