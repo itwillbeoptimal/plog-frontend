@@ -18,11 +18,29 @@ export {
 } from './model/place-tag';
 export { feedQueryKeys } from './model/query-keys';
 export type {
+  BookmarkedFeedsResponse,
+  FeedDetailResponse,
+  FeedListItemResponse,
+  FeedResponse,
+  PostScope,
+  ProfileFeedItem,
+  ProfilePostsResponse,
+} from './model/schemas';
+export {
+  bookmarkedFeedsResponseSchema,
+  feedDetailResponseSchema,
+  feedListItemResponseSchema,
+  feedResponseSchema,
+  placeTagValueSchema,
+  postScopeSchema,
+  profileFeedItemSchema,
+  profilePostsResponseSchema,
+} from './model/schemas';
+export type {
   BookmarkSortType,
   FeedPage,
   FeedPost,
   FeedProfilePosts,
-  PostScope,
   PostSortType,
 } from './model/types';
 export { default as FeedGridItem } from './ui/FeedGridItem';

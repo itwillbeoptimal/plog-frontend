@@ -6,11 +6,12 @@ import { feedQueryKeys } from '@/entities/feed';
 
 import { clientApi } from '@/shared/api/client-api';
 
-import { type UserDetailData } from './types';
+import { feedProfileViewResponseSchema } from './schemas';
 
 function fetchFeedProfileView(memberKey: string) {
-  return clientApi.get<UserDetailData>(
+  return clientApi.get(
     `/feed/profileView/${encodeURIComponent(memberKey)}`,
+    feedProfileViewResponseSchema,
   );
 }
 

@@ -3,17 +3,18 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import {
-  type FeedProfilePosts,
   feedQueryKeys,
   type PostSortType,
+  profilePostsResponseSchema,
 } from '@/entities/feed';
 
 import { clientApi } from '@/shared/api/client-api';
 
 function fetchFeedProfileViewPosts(memberKey: string, sort: PostSortType) {
   const params = new URLSearchParams({ sort });
-  return clientApi.get<FeedProfilePosts>(
+  return clientApi.get(
     `/feed/profileView/${encodeURIComponent(memberKey)}/posts?${params}`,
+    profilePostsResponseSchema,
   );
 }
 
