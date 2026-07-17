@@ -18,13 +18,13 @@ import {
   formatTimeAgo,
   PrivacySettingSection,
   TagBadgeGroup,
+  useFeedDetailQuery,
 } from '@/entities/feed';
 
 import { dialog } from '@/shared/lib/dialog';
 import { FetchErrorEmptyState } from '@/shared/ui';
 
 import { useDeletePostMutation } from '../model/use-delete-post-mutation';
-import { useFeedDetailQuery } from '../model/use-feed-detail-query';
 
 type FeedCarouselController = {
   slidePrev: () => void;
