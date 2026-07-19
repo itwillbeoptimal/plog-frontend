@@ -5,10 +5,18 @@ export function proxy(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken');
   const pathname = request.nextUrl.pathname;
 
+  const pathSegments = pathname.split('/').filter((segment) => segment !== '');
+
+  const isReviewCreatePage =
+    pathSegments.length === 3 &&
+    pathSegments[0] === 'review' &&
+    pathSegments[2] === 'create';
+
   const isProtectedPage =
     pathname.startsWith('/map') ||
     pathname.startsWith('/log') ||
-    pathname.startsWith('/my');
+    pathname.startsWith('/my') ||
+    isReviewCreatePage;
 
   const isGuestOnlyPage = pathname.startsWith('/signup');
 
@@ -24,5 +32,11 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/map/:path*', '/log/:path*', '/my/:path*', '/signup/:path*'],
+  matcher: [
+    '/map/:path*',
+    '/log/:path*',
+    '/my/:path*',
+    '/signup/:path*',
+    '/review/:postId/create',
+  ],
 };
